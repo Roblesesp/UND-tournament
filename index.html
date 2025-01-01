@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mi Página Dinámica</title>
+    <style>
+        /* Estilos generales */
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: black;
+        }
+
+        /* Header */
+        header {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        /* Contenedor principal */
+        .container {
+            padding: 20px;
+        }
+
+        /* Estilo de los botones */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 5px;
+            gap: 2px;
+        }
+
+        .btn-container button {
+            background-image: linear-gradient(to top right, #ff0000, #ffff00);
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .btn-container button:hover {
+            background-color: #45a049;
+        }
+
+        .btn-container button.active {
+            background-color: #45a049;
+            color: #000; 
+        }
+
+        /* Estilo de los divs dinámicos */
+        .iframe-container {
+            display: none;
+            width: 100%;
+            height: 100%;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: none;
+        }
+
+        /* Diseño responsive */
+        @media (max-width: 768px) {
+            .btn-container button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="btn-container">
+            <button id="btn1" onclick="showIframe(1)">Grupo 1</button>
+            <button id="btn2" onclick="showIframe(2)">Grupo 2</button>
+            <button id="btn3" onclick="showIframe(3)">Grupo 3</button>
+            <button id="btn4" onclick="showIframe(4)">Grupo 4</button>
+            <button id="btn5" onclick="showIframe(5)">Grupo 5</button>
+        </div>
+
+        <div id="iframe1" class="iframe-container">
+            <iframe src="https://restaurantes-el-cangrejo-rojo.com/" frameborder="0" id="miIframe1"></iframe>
+        </div>
+        <div id="iframe2" class="iframe-container">
+            <iframe src="https://restaurantes-el-cangrejo-rojo.com/grupo2/" frameborder="0"></iframe>
+        </div>
+        <div id="iframe3" class="iframe-container">
+            <iframe src="https://restaurantes-el-cangrejo-rojo.com/grupo3/" frameborder="0"></iframe>
+        </div>
+        <div id="iframe4" class="iframe-container">
+            <iframe src="https://restaurantes-el-cangrejo-rojo.com/grupo4/" frameborder="0"></iframe>
+        </div>
+        <div id="iframe5" class="iframe-container">
+            <iframe src="https://restaurantes-el-cangrejo-rojo.com/grupo5/" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showIframe(id) {
+            // Ocultar todos los divs
+            var iframes = document.querySelectorAll('.iframe-container');
+            iframes.forEach(function(iframe) {
+                iframe.style.display = 'none';
+            });
+
+            // Mostrar el div correspondiente
+            var iframeToShow = document.getElementById('iframe' + id);
+            iframeToShow.style.display = 'block';
+
+
+            // Marcar el botón activo
+            var buttons = document.querySelectorAll('.btn-container button');
+            buttons.forEach(function(button) {
+                button.classList.remove('active'); // Remover la clase "active" de todos los botones
+            });
+
+            // Agregar la clase "active" al botón clicado
+            var activeButton = document.getElementById('btn' + id); // Usamos el ID del botón
+            activeButton.classList.add('active');
+
+            
+        }
+        window.onload = function() {
+            showIframe(1);
+        };
+    </script>
+</body>
+</html>
